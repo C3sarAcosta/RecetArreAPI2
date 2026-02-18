@@ -15,6 +15,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// Configurar AutoMapper
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 //Configurar la seguridad de Identity (Microsoft)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
