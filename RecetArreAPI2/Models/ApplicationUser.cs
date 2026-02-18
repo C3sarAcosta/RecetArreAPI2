@@ -5,9 +5,7 @@ namespace RecetArreAPI2.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [StringLength(60)]
-        public string? NombreUsuario { get; set; }
-
+        
         [StringLength(500)]
         public string? Biografia { get; set; }
 
