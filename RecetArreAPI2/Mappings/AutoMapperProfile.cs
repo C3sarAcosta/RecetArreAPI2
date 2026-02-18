@@ -1,5 +1,6 @@
 using AutoMapper;
 using RecetArreAPI2.DTOs;
+using RecetArreAPI2.DTOs.Categorias;
 using RecetArreAPI2.Models;
 
 namespace RecetArreAPI2.Mappings
@@ -10,6 +11,11 @@ namespace RecetArreAPI2.Mappings
         {
             // ApplicationUser <-> ApplicationUserDto
             CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
+
+            // Categoria mappings
+            CreateMap<Categoria, CategoriaDto>();
+            CreateMap<CategoriaCreacionDto, Categoria>();
+            CreateMap<CategoriaModificacionDto, Categoria>();
         }
     }
 }
