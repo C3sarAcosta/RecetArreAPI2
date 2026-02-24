@@ -12,6 +12,7 @@ namespace RecetArreAPI2.Context
         }
 
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Ingrediente> Ingredientes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -44,6 +45,27 @@ namespace RecetArreAPI2.Context
                 // Índices
                 entity.HasIndex(e => e.Nombre).IsUnique();
                 entity.HasIndex(e => e.CreadoPorUsuarioId);
+            });
+
+            // Configuración de Ingrediente
+            builder.Entity<Ingrediente>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(80);
+
+                entity.Property(e => e.Notas)
+                    .HasMaxLength(250)
+                    .IsRequired(false);
+
+                entity.Property(e => e.CreadoUtc)
+                    .IsRequired()
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                // Índice único para evitar nombres duplicados
+                entity.HasIndex(e => e.Nombre).IsUnique();
             });
         }
     }
