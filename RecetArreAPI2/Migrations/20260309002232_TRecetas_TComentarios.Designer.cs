@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RecetArreAPI2.Context;
@@ -11,9 +12,11 @@ using RecetArreAPI2.Context;
 namespace RecetArreAPI2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260309002232_TRecetas_TComentarios")]
+    partial class TRecetas_TComentarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +38,6 @@ namespace RecetArreAPI2.Migrations
                     b.HasIndex("RecetasId");
 
                     b.ToTable("RecetaCategorias", (string)null);
-                });
-
-            modelBuilder.Entity("IngredienteReceta", b =>
-                {
-                    b.Property<int>("IngredientesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RecetasId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IngredientesId", "RecetasId");
-
-                    b.HasIndex("RecetasId");
-
-                    b.ToTable("RecetaIngredientes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -446,21 +434,6 @@ namespace RecetArreAPI2.Migrations
                     b.HasOne("RecetArreAPI2.Models.Categoria", null)
                         .WithMany()
                         .HasForeignKey("CategoriasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RecetArreAPI2.Models.Receta", null)
-                        .WithMany()
-                        .HasForeignKey("RecetasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("IngredienteReceta", b =>
-                {
-                    b.HasOne("RecetArreAPI2.Models.Ingrediente", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

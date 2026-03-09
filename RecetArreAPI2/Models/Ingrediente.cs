@@ -14,5 +14,7 @@ namespace RecetArreAPI2.Models
         public string? Notas { get; set; }
 
         public DateTime CreadoUtc { get; set; } = DateTime.UtcNow;
+
+        public ICollection<Receta> Recetas { get; set; } = new List<Receta>();
     }
 }

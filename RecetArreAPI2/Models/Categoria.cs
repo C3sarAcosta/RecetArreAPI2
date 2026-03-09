@@ -10,7 +10,7 @@ namespace RecetArreAPI2.Models
         [Required]
         [StringLength(100, MinimumLength = 2)]
         public string Nombre { get; set; } = default!;
-        
+
         [StringLength(500)]
         public string? Descripcion { get; set; }
 
@@ -22,5 +22,6 @@ namespace RecetArreAPI2.Models
 
 
         public ApplicationUser? CreadoPorUsuario { get; set; }
+        public ICollection<Receta> Recetas { get; set; } = new List<Receta>();
     }
 }

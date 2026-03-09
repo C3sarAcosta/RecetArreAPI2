@@ -1,0 +1,50 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace RecetArreAPI2.Migrations
+{
+    /// <inheritdoc />
+    public partial class TRecetaIngredientes : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "RecetaIngredientes",
+                columns: table => new
+                {
+                    IngredientesId = table.Column<int>(type: "integer", nullable: false),
+                    RecetasId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecetaIngredientes", x => new { x.IngredientesId, x.RecetasId });
+                    table.ForeignKey(
+                        name: "FK_RecetaIngredientes_Ingredientes_IngredientesId",
+                        column: x => x.IngredientesId,
+                        principalTable: "Ingredientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RecetaIngredientes_Recetas_RecetasId",
+                        column: x => x.RecetasId,
+                        principalTable: "Recetas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecetaIngredientes_RecetasId",
+                table: "RecetaIngredientes",
+                column: "RecetasId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "RecetaIngredientes");
+        }
+    }
+}
